@@ -1,0 +1,52 @@
+name: Bug
+description: Melde einen Fehler oder ein unerwartetes Verhalten
+title: "[Bug] - "
+labels:
+  - Bug
+assignees:
+  - FlorianCramer
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke, dass du einen Fehler meldest. Bitte beschreibe ihn so präzise wie möglich.
+  - type: textarea
+    id: description
+    attributes:
+      label: Beschreibung des Problems
+      description: Was ist passiert? Was war erwartet?
+      placeholder: Beschreibe den Fehler klar und konkret.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Schritte zur Reproduktion
+      description: Bitte nenne die Schritte, um den Fehler nachzustellen.
+      placeholder: 1. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: Gerät
+      description: Für welche Plattform tritt der Fehler auf?
+      options:
+        - iOS
+        - Android
+        - Web
+      default: 3
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Umgebung
+      description: Betriebssystem, Browser, Gerät, Versionen usw.
+      placeholder: z. B. Android 14, Chrome 126
+  - type: textarea
+    id: expected
+    attributes:
+      label: Erwartetes Verhalten
+      description: Was sollte eigentlich passieren?
+      placeholder: Beschreibe das gewünschte Verhalten.
