@@ -17,7 +17,7 @@ android {
         }
     }
     signingConfigs {
-        development {
+        debug {
             storeFile file(System.getenv("DEBUG_KEYSTORE"))
             storePassword "android"
             keyAlias "androiddebugkey"
@@ -26,13 +26,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-
-        development {
-            signingConfig signingConfigs.development
         }
     }
 }
