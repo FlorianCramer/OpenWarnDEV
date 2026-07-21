@@ -19,6 +19,7 @@
     "@capacitor/splash-screen": "^8.0.2",
     "flowbite": "^4.0.2",
     "flowbite-react": "^0.12.17",
+    "maplibre-gl": "^5.24.0",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
