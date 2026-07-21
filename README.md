@@ -27,8 +27,10 @@ Die Plattform soll:
 
 Die App soll:
 
-- eine Detailierte 3D Karte sein
-- den eigenen Standort des Nutzers darstellen
+- eine detaillierte 3D Karte bieten
+- den eigenen Standort des Nutzers darstellen (inkl. Genauigkeitskreis)
+- intuitive Kartensteuerungen bieten (Zoom In/Out, Kompass-Nordausrichtung Reset, 3D-Pitch Neigung Reset, Standort-Ortung)
+- rechtliche Transparenz über ein Urheberrechts- & Quellenmodal (OpenStreetMap ODbL, OpenFreeMap, MapLibre GL JS, Markenrechte) bieten
 - Live-Daten anzeigen, wenn die App geöffnet ist
 - Warnungen und Live-Gefährdungsdaten auf einer Karte anzeigen
 - Hintergrund-Push-Nachrichten unterstützen, wenn die App installiert ist
@@ -36,9 +38,10 @@ Die App soll:
 
 Die App wird mit CapacitorJS gebaut und nutzt dessen Plugins für:
 
-- Standortabfrage
+- `@capacitor/geolocation` zur Standortabfrage
 - Push-Benachrichtigungen
 - native App-Funktionalität im Web- und Mobilbetrieb
+
 
 ## Ziele des Servers
 

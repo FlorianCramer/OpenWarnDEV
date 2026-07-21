@@ -15,6 +15,7 @@
   "dependencies": {
     "@capacitor/android": "^8.4.2",
     "@capacitor/core": "^8.4.2",
+    "@capacitor/geolocation": "^8.2.0",
     "@capacitor/ios": "^8.4.2",
     "@capacitor/splash-screen": "^8.0.2",
     "flowbite": "^4.0.2",

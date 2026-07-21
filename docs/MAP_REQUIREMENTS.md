@@ -17,8 +17,8 @@ abgehakt.
 - [ ] 3D-Brücken (an Gelände angepasst) aus OpenStreetMap-Daten
 - [ ] 3D-Bäume aus OpenStreetMap-Daten (natural=tree, tree_row)
 - [ ] 3D-Pflanzen und Vegetation aus OpenStreetMap-Daten (natural=scrub, grassland, heath, etc.)
-- [ ] 3D-Wälder aus OpenStreetMap-Daten (landuse=forest, natural=wood)
-
+- [x] Kartensteuerungs-Buttons (Zoom In/Out, Kompass-Reset, Pitch-Reset, Nutzerstandort via Capacitor Geolocation)
+- [x] Info- & Urheberrechts-Modal (Attribution, Markenrechte & Notfallhinweise)
 - [ ] 3D-Straßen (Brücken und Tunnel) aus OpenStreetMap-Daten
 - [ ] 3D-Gewässer aus OpenStreetMap-Daten mit 2D Animationen in Fließrichtung (OpenStreetMap-Daten)
 - [ ] 3D-Bäume und Vegetation per Instanced Rendering
