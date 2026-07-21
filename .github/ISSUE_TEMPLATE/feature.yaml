@@ -1,0 +1,50 @@
+name: Feature
+description: Vorschlag für ein neues Feature oder eine Erweiterung
+title: "[Feature] - "
+labels:
+  - Feature
+assignees:
+  - FlorianCramer
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke für den Vorschlag. Bitte beschreibe das Feature so konkret wie möglich.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Kurzbeschreibung
+      description: Was soll das Feature leisten?
+      placeholder: Beschreibe das Ziel des Features.
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Warum ist dieses Feature wichtig?
+      placeholder: Erläutere den Nutzen oder den Anwendungsfall.
+    validations:
+      required: true
+  - type: dropdown
+    id: target
+    attributes:
+      label: Zielbereich
+      description: Für welche Komponente ist das Feature gedacht?
+      options:
+        - App
+        - Server
+        - Beides
+      default: 1
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Abnahmekriterien
+      description: Wann gilt das Feature als umgesetzt?
+      placeholder: Liste relevante Kriterien auf.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Weitere Hinweise
+      description: Ergänzende Informationen, Kontext oder offene Fragen.
+      placeholder: Hintergründe, Referenzen oder technische Hinweise.

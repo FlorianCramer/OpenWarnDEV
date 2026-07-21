@@ -1,0 +1,114 @@
+name: APK Development Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'app/**'
+
+jobs:
+  android:
+    name: Build Android Development APK
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Read version
+        working-directory: app
+        shell: bash
+        run: |
+          echo "APP_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+          echo "APP_CODE=${{ github.run_number }}" >> $GITHUB_ENV
+
+          echo "Version: $(node -p "require('./package.json').version")"
+          echo "Code: ${{ github.run_number }}"
+
+      - name: Update Android version
+        working-directory: app
+        shell: bash
+        run: |
+          sed -i "s/versionCode [0-9]*/versionCode ${APP_CODE}/" android/app/build.gradle
+          sed -i "s/versionName \".*\"/versionName \"${APP_VERSION}\"/" android/app/build.gradle
+
+          grep versionCode android/app/build.gradle
+          grep versionName android/app/build.gradle
+
+      - name: Build Web App
+        working-directory: app
+        run: npm run build
+
+      - name: Capacitor Sync Android
+        working-directory: app
+        run: npx cap sync android
+
+      - name: Setup Android Debug Keystore
+        shell: bash
+        run: |
+          mkdir -p ~/.android
+
+          if [ ! -f ~/.android/debug.keystore ]; then
+            keytool \
+              -genkeypair \
+              -v \
+              -keystore ~/.android/debug.keystore \
+              -storepass android \
+              -alias androiddebugkey \
+              -keypass android \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -dname "CN=Android Debug,O=Android,C=US"
+          fi
+
+          echo "DEBUG_KEYSTORE=$HOME/.android/debug.keystore" >> $GITHUB_ENV
+
+          ls -lh ~/.android/debug.keystore
+
+      - name: Make Gradle executable
+        working-directory: app/android
+        run: chmod +x gradlew
+
+      - name: Build Development APK
+        working-directory: app/android
+        run: |
+          ./gradlew assembleDebug --stacktrace
+
+      - name: Prepare APK
+        shell: bash
+        run: |
+          mkdir -p output
+
+          cp \
+          app/android/app/build/outputs/apk/debug/app-debug.apk \
+          output/OpenWarnDE-${APP_VERSION}-${APP_CODE}.apk
+
+          ls -lh output
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenWarnDE-development-${{ github.run_number }}
+          path: output/*.apk
