@@ -10,6 +10,23 @@ export interface Coordinates {
 }
 
 /**
+ * Fordert die Standortberechtigung vom Nutzer an (Runtime Permission).
+ */
+export async function requestLocationPermissions(): Promise<boolean> {
+  try {
+    const permResult = await Geolocation.checkPermissions();
+    if (permResult.location === "granted" || permResult.coarseLocation === "granted") {
+      return true;
+    }
+    const reqResult = await Geolocation.requestPermissions();
+    return reqResult.location === "granted" || reqResult.coarseLocation === "granted";
+  } catch (error) {
+    console.warn("[Geolocation] Fehler beim Anfordern der Standortberechtigung via Capacitor:", error);
+    return false;
+  }
+}
+
+/**
   * Abfrage des aktuellen Nutzerstandorts.
   * @param enabled Boolean-Flag zum Deaktivieren der Funktion
   */

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import type { Map as MapLibreMap } from "maplibre-gl";
 import { useMapStore } from "@/src/store/mapStore";
-import { getCurrentLocation } from "./geolocation";
+import { getCurrentLocation, requestLocationPermissions } from "./geolocation";
 import { updateUserLocationMarker } from "./userLocationMarker";
 
 interface MapControlsProps {
@@ -39,6 +39,15 @@ export default function MapControls({
   const [locating, setLocating] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [deviceHeading, setDeviceHeading] = useState<number | null>(null);
+
+  // Standortberechtigung beim ersten App-Start anfordern
+  useEffect(() => {
+    requestLocationPermissions().then((granted) => {
+      if (!granted) {
+        console.warn("[MapControls] Standortberechtigung wurde nicht erteilt.");
+      }
+    });
+  }, []);
 
   // Optional Gyroskopsensor für mobile Geräte
   useEffect(() => {
