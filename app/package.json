@@ -23,7 +23,8 @@
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-icons": "^5.7.0"
+    "react-icons": "^5.7.0",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",

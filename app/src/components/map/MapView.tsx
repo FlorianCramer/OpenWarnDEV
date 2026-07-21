@@ -5,18 +5,20 @@ import maplibregl, { type Map as MapLibreMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import {
-  MAP_STYLE_URL,
   MAP_CENTER,
-  MAP_ZOOM,
   MAP_MAX_PITCH,
-  mapLayerFlags,
+  MAP_STYLE_URL,
+  MAP_ZOOM,
 } from "./mapConfig";
 
 import { setBuildings3DVisible } from "./buildingsLayer";
+import { useMapStore } from "@/src/store/mapStore";
 
 export default function MapView() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
+
+  const buildings3D = useMapStore((state) => state.buildings3D);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -32,7 +34,7 @@ export default function MapView() {
     mapRef.current = map;
 
     map.on("load", () => {
-      setBuildings3DVisible(map, mapLayerFlags.buildings3D);
+      setBuildings3DVisible(map, buildings3D);
     });
 
     return () => {
@@ -41,10 +43,17 @@ export default function MapView() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!mapRef.current) return;
+    if (!mapRef.current.isStyleLoaded()) return;
+
+    setBuildings3DVisible(mapRef.current, buildings3D);
+  }, [buildings3D]);
+
   return (
     <div
       ref={containerRef}
-      className="h-full w-full"
+      className="w-full h-full"
     />
   );
 }

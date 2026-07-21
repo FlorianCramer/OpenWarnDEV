@@ -4,11 +4,10 @@ const BUILDING_2D_LAYER_ID = "custom-buildings-2d";
 
 export function setBuildings3DVisible(
   map: MapLibreMap,
- visible: boolean,
+  visible: boolean,
 ) {
   const layers = map.getStyle().layers ?? [];
 
-  // 3D-Layer umschalten
   layers.forEach((layer) => {
     if (layer.type !== "fill-extrusion") return;
 
@@ -36,8 +35,8 @@ function addBuildings2DLayer(map: MapLibreMap) {
     "source-layer": "building",
     paint: {
       "fill-color": "#d9d9d9",
+      "fill-outline-color": "#bdbdbd",
       "fill-opacity": 0.9,
-      "fill-outline-color": "#b5b5b5",
     },
   });
 }
