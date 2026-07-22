@@ -20,7 +20,7 @@ Die Plattform soll:
 - Die App soll kostenlos bleiben
 - Der Server soll später zentral gehostet werden und regionale Risikoauswertungen bereitstellen
 - Die App soll sowohl als Web-App als auch als native App nutzbar sein
-- Die Karte soll ein detailiertes 3D-Gelände und 3D-Gebäude zeigen
+- Die Karte zeigt ein interaktives **3D-Gelände** (AWS Terrain Tiles, schaltbar) und **3D-Gebäude**, die sich automatisch dem Gelände anpassen
 - Ein geschützter Einsatzmodus soll für autorisierte Nutzer verfügbar sein
 
 ## Ziele der App

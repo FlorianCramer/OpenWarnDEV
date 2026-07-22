@@ -12,7 +12,7 @@ abgehakt.
 # Basis
 
 - [x] Kartenbasis von [OpenStreetMap](https://www.openstreetmap.org/)
-- [ ] 3D-Gelände von [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/examples/3d-terrain/)
+- [x] 3D-Gelände von [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/examples/3d-terrain/)
 - [x] 3D-Gebäude von [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/examples/display-buildings-in-3d/)
 - [ ] 3D-Brücken (an Gelände angepasst) aus OpenStreetMap-Daten
 - [ ] 3D-Bäume aus OpenStreetMap-Daten (natural=tree, tree_row)

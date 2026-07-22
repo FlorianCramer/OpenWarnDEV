@@ -22,6 +22,9 @@ type MapStore = {
   buildings3D: boolean;
   setBuildings3D: (enabled: boolean) => void;
 
+  terrain3D: boolean;
+  setTerrain3D: (enabled: boolean) => void;
+
   controlsConfig: MapControlsConfig;
   setControlsConfig: (config: Partial<MapControlsConfig>) => void;
 
@@ -39,6 +42,9 @@ type MapStore = {
 export const useMapStore = create<MapStore>((set) => ({
   buildings3D: true,
   setBuildings3D: (enabled) => set({ buildings3D: enabled }),
+
+  terrain3D: true,
+  setTerrain3D: (enabled) => set({ terrain3D: enabled }),
 
   controlsConfig: {
     enabled: true,
