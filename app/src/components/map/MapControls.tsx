@@ -9,7 +9,6 @@ import { updateUserLocationMarker } from "./userLocationMarker";
 interface MapControlsProps {
   /** MapLibre Map Instanz */
   map: MapLibreMap | null;
-  /** Haupt-Boolean-Flag zum Deaktivieren/Aktivieren (gemäß AI_RULES.md) */
   enabled?: boolean;
   showZoom?: boolean;
   showCompass?: boolean;
@@ -40,16 +39,14 @@ export default function MapControls({
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [deviceHeading, setDeviceHeading] = useState<number | null>(null);
 
-  // Standortberechtigung beim ersten App-Start anfordern
   useEffect(() => {
     requestLocationPermissions().then((granted) => {
       if (!granted) {
-        console.warn("[MapControls] Standortberechtigung wurde nicht erteilt.");
+        console.warn("[MapControls] - Standortberechtigung wurde nicht erteilt.");
       }
     });
   }, []);
 
-  // Optional Gyroskopsensor für mobile Geräte
   useEffect(() => {
     if (!enableGyroscope || typeof window === "undefined" || !("DeviceOrientationEvent" in window)) {
       return;
@@ -73,7 +70,6 @@ export default function MapControls({
     };
   }, [enableGyroscope]);
 
-  // Master disable check (AI_RULES.md)
   if (!enabled || !storeControlsConfig.enabled) {
     return null;
   }
@@ -84,7 +80,6 @@ export default function MapControls({
   const canLocation = showLocation && storeControlsConfig.showLocation;
   const canInfo = showInfoModal && storeControlsConfig.showInfoModal;
 
-  // Zoom Handlers
   const handleZoomIn = (actionEnabled: boolean = true) => {
     if (!actionEnabled || !map) return;
     map.zoomIn({ duration: 300 });
@@ -95,12 +90,11 @@ export default function MapControls({
     map.zoomOut({ duration: 300 });
   };
 
-  // Compass Reset Handler (Reset bearing and 2D orientation)
   const handleCompassReset = (actionEnabled: boolean = true) => {
     if (!actionEnabled || !map) return;
     map.easeTo({
       bearing: 0,
-      duration: 500,
+      duration: 750,
     });
   };
 
@@ -110,7 +104,7 @@ export default function MapControls({
     map.easeTo({
       pitch: 0,
       bearing: 0,
-      duration: 500,
+      duration: 750,
     });
   };
 
@@ -143,7 +137,7 @@ export default function MapControls({
         map.flyTo({
           center: [coords.longitude, coords.latitude],
           zoom: Math.max(map.getZoom(), 15),
-          duration: 1200,
+          duration: 1250,
         });
       } else {
         throw new Error("Standort konnte nicht ermittelt werden");

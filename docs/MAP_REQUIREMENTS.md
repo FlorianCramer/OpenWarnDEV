@@ -23,3 +23,11 @@ abgehakt.
 - [ ] 3D-Gewässer aus OpenStreetMap-Daten mit 2D Animationen in Fließrichtung (OpenStreetMap-Daten)
 - [ ] 3D-Bäume und Vegetation per Instanced Rendering
 - [ ] Automatische Höhenanpassung aller 3D-Objekte an das Terrain
+
+# Erweitert 
+
+- [ ] Animierte züge, busse und Bahnen auf schienen oder straßen anhand der Fahrplandaten und deren routen (Openstreetmap) (GTFS.de, DB Open Data)
+
+# BOS Mode
+
+- [ ] Flurstücke
