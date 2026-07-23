@@ -12,7 +12,7 @@ abgehakt.
 # Basis
 
 - [x] Kartenbasis von [OpenStreetMap](https://www.openstreetmap.org/)
-- [ ] 3D-Gelände von [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/examples/3d-terrain/)
+- [x] 3D-Gelände von [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/examples/3d-terrain/)
 - [x] 3D-Gebäude von [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/examples/display-buildings-in-3d/)
 - [ ] 3D-Brücken (an Gelände angepasst) aus OpenStreetMap-Daten
 - [ ] 3D-Bäume aus OpenStreetMap-Daten (natural=tree, tree_row)
@@ -23,3 +23,11 @@ abgehakt.
 - [ ] 3D-Gewässer aus OpenStreetMap-Daten mit 2D Animationen in Fließrichtung (OpenStreetMap-Daten)
 - [ ] 3D-Bäume und Vegetation per Instanced Rendering
 - [ ] Automatische Höhenanpassung aller 3D-Objekte an das Terrain
+
+# Erweitert 
+
+- [ ] Animierte züge, busse und Bahnen auf schienen oder straßen anhand der Fahrplandaten und deren routen (Openstreetmap) (GTFS.de, DB Open Data)
+
+# BOS Mode
+
+- [ ] Flurstücke

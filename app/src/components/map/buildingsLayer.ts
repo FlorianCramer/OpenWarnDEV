@@ -2,6 +2,15 @@ import type { Map as MapLibreMap } from "maplibre-gl";
 
 const BUILDING_2D_LAYER_ID = "custom-buildings-2d";
 
+/**
+ * Setzt die Sichtbarkeit der 3D-Gebäude-Extrusion-Layer.
+ * Bei aktiviertem Terrain passen sich die Gebäude automatisch dem Gelände an
+ * (MapLibre GL JS berücksichtigt das Terrain für fill-extrusion automatisch).
+ *
+ * @param map     - MapLibre-Karteninstanz
+ * @param visible - true = 3D-Gebäude sichtbar, false = 2D-Fallback
+ * @param enabled - Globaler Feature-Toggle; wenn false, passiert nichts
+ */
 export function setBuildings3DVisible(
   map: MapLibreMap | null,
   visible: boolean,

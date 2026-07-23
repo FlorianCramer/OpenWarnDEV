@@ -1,3 +1,4 @@
+// app/src/components/map/CopyrightModal.tsx
 "use client";
 
 import React, { useEffect } from "react";
@@ -149,6 +150,58 @@ export default function CopyrightModal({ enabled = true }: CopyrightModalProps) 
               </a>{" "}
               (BSD 3-Clause Lizenz).
             </p>
+          </section>
+
+          {/* 3D-Gelände & Höhendaten (NEU) */}
+          <section className="space-y-2">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1">
+              3D-Gelände & Höhendaten
+            </h3>
+            <p>
+              Die Darstellung des 3D-Geländes und der Geländeschattierung (Hillshade)
+              basiert auf Höhendaten der{" "}
+              <a
+                href="https://www.eorc.jaxa.jp/ALOS/en/aw3d30/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                JAXA ALOS World 3D (AW3D30)
+              </a>{" "}
+              Mission mit einer Auflösung von 30 Metern.
+            </p>
+            <p>
+              Diese Daten werden über den kostenlosen Demo-Tile-Dienst von{" "}
+              <a
+                href="https://www.maptiler.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                MapTiler
+              </a>{" "}
+              (mapterhorn.com) bereitgestellt.
+            </p>
+            <div className="p-3 bg-blue-50 dark:bg-blue-950/50 rounded-lg text-xs leading-relaxed text-blue-900 dark:text-blue-300 border border-blue-100 dark:border-blue-900/50">
+              ©{" "}
+              <a
+                href="https://www.eorc.jaxa.jp/ALOS/en/aw3d30/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline font-semibold"
+              >
+                JAXA
+              </a>{" "}
+              &amp;{" "}
+              <a
+                href="https://www.maptiler.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline font-semibold"
+              >
+                MapTiler
+              </a>
+            </div>
           </section>
 
           {/* Markenrechtliche Hinweise */}

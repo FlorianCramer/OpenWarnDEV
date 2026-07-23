@@ -4,9 +4,6 @@ let currentMarker: maplibregl.Marker | null = null;
 const ACCURACY_SOURCE_ID = "user-location-accuracy-source";
 const ACCURACY_LAYER_ID = "user-location-accuracy-layer";
 
-/**
- * Hilfsfunktion zur Erzeugung eines GeoJSON Kreis-Polygons für Genauigkeitsradius (in Metern)
- */
 function createGeoJSONCircle(center: [number, number], radiusInMeters: number, points = 64) {
   const coords = {
     latitude: center[1],
@@ -101,7 +98,7 @@ export function updateUserLocationMarker(
         source: ACCURACY_SOURCE_ID,
         paint: {
           "fill-color": "#3b82f6",
-          "fill-opacity": 0.15,
+          "fill-opacity": 0.1,
         },
       });
     }

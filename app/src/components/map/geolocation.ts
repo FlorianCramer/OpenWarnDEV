@@ -9,9 +9,7 @@ export interface Coordinates {
   speed?: number | null;
 }
 
-/**
- * Fordert die Standortberechtigung vom Nutzer an (Runtime Permission).
- */
+/*Fordert die Standortberechtigung vom Nutzer an (Runtime Permission).*/
 export async function requestLocationPermissions(): Promise<boolean> {
   try {
     const permResult = await Geolocation.checkPermissions();
@@ -21,7 +19,7 @@ export async function requestLocationPermissions(): Promise<boolean> {
     const reqResult = await Geolocation.requestPermissions();
     return reqResult.location === "granted" || reqResult.coarseLocation === "granted";
   } catch (error) {
-    console.warn("[Geolocation] Fehler beim Anfordern der Standortberechtigung via Capacitor:", error);
+    console.warn("[Geolocation] - Fehler beim Anfordern der Standortberechtigung via Capacitor:", error);
     return false;
   }
 }
@@ -34,7 +32,7 @@ export async function getCurrentLocation(
   enabled: boolean = true
 ): Promise<Coordinates | null> {
   if (!enabled) {
-    console.log("[Geolocation] Funktion ist deaktiviert.");
+    console.log("[Geolocation] - Funktion ist deaktiviert.");
     return null;
   }
 
@@ -64,7 +62,7 @@ export async function getCurrentLocation(
         speed: position.coords.speed,
       };
     } catch (capError) {
-      console.warn("[Geolocation] Capacitor Geolocation Fehlgeschlagen, versuche Web-Fallback:", capError);
+      console.warn("[Geolocation] - Capacitor Geolocation Fehlgeschlagen, versuche Web-Fallback:", capError);
       
       // 2. Fallback auf standardmäßige Browser-API
       if (typeof window !== "undefined" && "geolocation" in navigator) {
@@ -93,7 +91,7 @@ export async function getCurrentLocation(
       throw capError;
     }
   } catch (error) {
-    console.error("[Geolocation] Fehler bei Standortabfrage:", error);
+    console.error("[Geolocation] - Fehler bei Standortabfrage:", error);
     throw error;
   }
 }
