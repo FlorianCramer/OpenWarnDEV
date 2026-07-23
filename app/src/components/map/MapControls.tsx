@@ -168,14 +168,14 @@ export default function MapControls({
         </div>
       )}
 
-      {/* LINKS UNTEN: Nur Info Icon Button */}
+      {/* LINKS UNTEN */}
       {canInfo && (
         <div className="fixed bottom-5 left-4 z-40 pointer-events-auto flex items-center">
           <button
             onClick={() => setInfoModalOpen(true)}
             aria-label="Karten-Informationen & Urheberrecht"
             title="Karten-Info & Markenrechte"
-            className="p-3 bg-white/95 dark:bg-gray-800/95 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-full shadow-2xl border border-gray-200/80 dark:border-gray-700/80 backdrop-blur-md transition-all active:scale-90 flex items-center justify-center group"
+            className="cursor-pointer p-3 bg-white/95 dark:bg-gray-800/95 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-full shadow-2xl border border-gray-200/80 dark:border-gray-700/80 backdrop-blur-md transition-all active:scale-90 flex items-center justify-center group"
           >
             <svg
               className="w-5 h-5 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform"
@@ -194,18 +194,18 @@ export default function MapControls({
         </div>
       )}
 
-      {/* MITTIG UNTEN: Zentriertes Control-Panel (Standort-Pin, Live-Kompass, Pitch-Reset) */}
+      {/* MITTIG UNTEN */}
       {(canLocation || canCompass || canPitch) && (
         <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 pointer-events-auto flex items-center bg-white/95 dark:bg-gray-800/95 rounded-full shadow-2xl border border-gray-200/80 dark:border-gray-700/80 p-1.5 space-x-2 backdrop-blur-md">
           
-          {/* LINKES ELEMENT: Standort-Steuerung (Pin Icon) */}
+          {/* LINKES ELEMENT */}
           {canLocation && (
             <button
               onClick={() => handleLocateMe(true)}
               disabled={locating}
               aria-label="Auf eigenen Standort zentrieren"
               title="Auf eigenen Standort zentrieren"
-              className={`relative p-3 rounded-full transition-all active:scale-90 flex items-center justify-center ${
+              className={`cursor-pointer relative p-3 rounded-full transition-all active:scale-90 flex items-center justify-center ${
                 userLocation.latitude !== null
                   ? "bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-400 font-bold"
                   : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -235,7 +235,7 @@ export default function MapControls({
             </button>
           )}
 
-          {/* MITTLERES ELEMENT: Live-Kompass Widget */}
+          {/* MITTLERES ELEMENT */}
           {canCompass && (
             <button
               onClick={() => handleCompassReset(true)}
@@ -288,13 +288,13 @@ export default function MapControls({
             </button>
           )}
 
-          {/* RECHTES ELEMENT: Pitch Reset Button (3D Perspektive auf 2D zurücksetzen) */}
+          {/* RECHTES ELEMENT */}
           {canPitch && (
             <button
               onClick={() => handlePitchReset(true)}
               aria-label="Perspektive zurücksetzen (Standard 2D)"
               title={`Neigung zurücksetzen (Aktuell: ${Math.round(pitch)}°)`}
-              className={`p-3 rounded-full transition-all active:scale-90 flex items-center justify-center ${
+              className={`cursor-pointer p-3 rounded-full transition-all active:scale-90 flex items-center justify-center ${
                 pitch > 5
                   ? "text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/60 font-bold"
                   : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -310,7 +310,7 @@ export default function MapControls({
         </div>
       )}
 
-      {/* RECHTS UNTEN: Zoom Duo (+/-) (Flowbite Round Buttons) */}
+      {/* RECHTS UNTEN */}
       {canZoom && (
         <div className="fixed bottom-5 right-4 z-40 pointer-events-auto flex flex-col bg-white/95 dark:bg-gray-800/95 rounded-full shadow-2xl border border-gray-200/80 dark:border-gray-700/80 p-1 space-y-1 backdrop-blur-md">
           {/* Zoom In */}
@@ -318,7 +318,7 @@ export default function MapControls({
             onClick={() => handleZoomIn(true)}
             aria-label="Vergrößern (Zoom In)"
             title="Heranzoomen (+)"
-            className="p-2.5 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all active:scale-90 flex items-center justify-center"
+            className="cursor-pointer p-2.5 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all active:scale-90 flex items-center justify-center"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
@@ -332,7 +332,7 @@ export default function MapControls({
             onClick={() => handleZoomOut(true)}
             aria-label="Verkleinern (Zoom Out)"
             title="Herauszoomen (-)"
-            className="p-2.5 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all active:scale-90 flex items-center justify-center"
+            className="cursor-pointer p-2.5 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all active:scale-90 flex items-center justify-center"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M20 12H4" />
