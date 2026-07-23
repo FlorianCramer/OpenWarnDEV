@@ -1,4 +1,3 @@
-// app/src/components/map/CopyrightModal.tsx
 "use client";
 
 import React, { useEffect } from "react";

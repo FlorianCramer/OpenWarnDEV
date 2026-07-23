@@ -1,4 +1,3 @@
-// app/src/components/map/MapView.tsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -26,13 +25,8 @@ interface MapViewProps {
 // Hillshade-Konfiguration (genau wie im Beispiel)
 const HILLSHADE_SOURCE_ID = "hillshadeSource";
 const HILLSHADE_LAYER_ID = "hills";
-const HILLSHADE_TILEJSON_URL =
-  "https://tiles.mapterhorn.com/tilejson.json";
+const HILLSHADE_TILEJSON_URL = "https://tiles.mapterhorn.com/tilejson.json";
 
-/**
- * Fügt die Hillshade-Quelle und den Layer hinzu, falls noch nicht vorhanden.
- * Wird einmalig nach dem Kartenladeprozess aufgerufen.
- */
 function initHillshade(map: MapLibreMap) {
   if (!map.getSource(HILLSHADE_SOURCE_ID)) {
     map.addSource(HILLSHADE_SOURCE_ID, {
@@ -42,8 +36,6 @@ function initHillshade(map: MapLibreMap) {
   }
 
   if (!map.getLayer(HILLSHADE_LAYER_ID)) {
-    // Der Hillshade-Layer soll über dem Hintergrund, aber unter den Gebäuden liegen.
-    // Wir platzieren ihn vor dem ersten Symbol-Layer (Label) – das ist eine sichere Position.
     const firstSymbolId = map
       .getStyle()
       ?.layers?.find((l) => l.type === "symbol")?.id;
@@ -62,11 +54,6 @@ function initHillshade(map: MapLibreMap) {
   }
 }
 
-/**
- * Schaltet die Sichtbarkeit des Hillshade-Layers um.
- * @param map     MapLibre-Instanz
- * @param visible true = ein, false = aus
- */
 function setHillshadeVisible(map: MapLibreMap, visible: boolean) {
   const layer = map.getLayer(HILLSHADE_LAYER_ID);
   if (layer) {

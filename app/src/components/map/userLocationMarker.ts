@@ -35,14 +35,6 @@ function createGeoJSONCircle(center: [number, number], radiusInMeters: number, p
   };
 }
 
-/**
- * Zeigt oder aktualisiert den Standort-Marker und den Genauigkeitskreis auf der Karte.
- * @param map MapLibre Map Instanz
- * @param lng Längengrad
- * @param lat Breitengrad
- * @param accuracy Genauigkeit in Metern
- * @param enabled Boolean Flag zum Aktivieren/Deaktivieren (AI_RULES.md)
- */
 export function updateUserLocationMarker(
   map: MapLibreMap | null,
   lng: number,
