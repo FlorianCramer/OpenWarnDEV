@@ -1,7 +1,6 @@
-// app/src/components/map/CopyrightModal.tsx
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useMapStore } from "@/src/store/mapStore";
 
 interface CopyrightModalProps {

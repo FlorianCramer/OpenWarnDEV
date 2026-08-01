@@ -24,10 +24,6 @@ export async function requestLocationPermissions(): Promise<boolean> {
   }
 }
 
-/**
-  * Abfrage des aktuellen Nutzerstandorts.
-  * @param enabled Boolean-Flag zum Deaktivieren der Funktion
-  */
 export async function getCurrentLocation(
   enabled: boolean = true
 ): Promise<Coordinates | null> {
