@@ -71,8 +71,8 @@ das gilt für alle unten genannten Punkte und wird der Kürze halber nicht bei j
   - *Umsetzung:* Zusätzlicher Toggle im Kartensteuerungs-Panel (siehe Steuerungs-Tabelle in [STYLEGUIDE.md](/docs/STYLEGUIDE.md)), der zwischen Vector- und Raster-Satelliten-Style wechselt.
 
 - [x] **Fokus auf Deutschland: andere Länder ausgegraut, Navigation eingegrenzt**
-  - *Quelle:* Deutschland-Grenze als GeoJSON über die Overpass API (OSM-Relation `51477`, Deutschland).
-  - *Umsetzung:* `map.setMaxBounds()` für die Navigationsbegrenzung, plus eine invertierte Maskierungs-Fläche (begrenztes Karten-Polygon minus Deutschland-Polygon) als nativer MapLibre-`fill`-Layer. Die Maske wird ausschließlich aus der erfolgreich geladenen Deutschland-Relation erzeugt; ohne Grenzdaten wird keine Ersatzgeometrie gezeichnet.
+  - *Quelle:* Als GeoJSON exportierte Deutschland-Grenze aus der Overpass-OSM-Relation `51477`.
+  - *Umsetzung:* Die Grenze wird mit `npm run update:germany-boundary` einmalig aktualisiert und als `src/data/germany-boundary.json` versioniert. Die App lädt ausschließlich diese statische Datei und zeichnet daraus die invertierte Maskierungs-Fläche als nativen MapLibre-`fill`-Layer; im Betrieb gibt es keinen Overpass-Request.
 
 - [ ] **Performance-Optimierung des 3D-Geländes**
   - *Quelle:* keine neue Datenquelle – betrifft die bestehenden Mapterhorn-Terrain-Tiles.
