@@ -29,6 +29,8 @@ export default function MenuPopup({ isOpen, onClose }: MenuPopupProps) {
   const setBuildings3D = useMapStore((s) => s.setBuildings3D);
   const terrain3D = useMapStore((s) => s.terrain3D);
   const setTerrain3D = useMapStore((s) => s.setTerrain3D);
+  const bosMode = useMapStore((s) => s.bosMode);
+  const setBosMode = useMapStore((s) => s.setBosMode);
 
   const [bosKey, setBosKeyState] = useState<string>(() => {
     if (typeof window !== "undefined") {
@@ -107,10 +109,10 @@ export default function MenuPopup({ isOpen, onClose }: MenuPopupProps) {
         {
           type: "toggle",
           label: "BOS Modus",
-          description: "Soll der BOS Modus aktiviert werden",
+          description: "BOS-Modus für zukünftige Funktionen aktivieren",
           icon: <BosIcon />,
-          getValue: () => terrain3D, //momentan platzhalter
-          setValue: setTerrain3D, //momentan platzhalter
+          getValue: () => bosMode,
+          setValue: setBosMode,
         },
         {
           type: "input",
@@ -123,7 +125,7 @@ export default function MenuPopup({ isOpen, onClose }: MenuPopupProps) {
         },
       ],
     },
-  }), [buildings3D, terrain3D, bosKey]);
+  }), [buildings3D, terrain3D, bosMode, bosKey, setBosMode]);
 
   const currentSection = sections[path[path.length - 1]];
 
