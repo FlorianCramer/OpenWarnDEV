@@ -18,7 +18,6 @@ das gilt für alle unten genannten Punkte und wird der Kürze halber nicht bei j
 
 - [x] Kartenbasis von [OpenStreetMap](https://www.openstreetmap.org/)
 - [x] 3D-Gelände von [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/examples/3d-terrain/)
-  - ⚠️ *Doku-Hinweis:* `README.md` nennt aktuell "AWS Terrain Tiles" als Quelle, im Code (`terrainLayer.ts`) wird jedoch `tiles.mapterhorn.com` (Mapterhorn Raster-DEM) verwendet. Sollte bei Gelegenheit im README korrigiert werden, unabhängig von dieser Datei.
 - [x] 3D-Gebäude von [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/examples/display-buildings-in-3d/)
 - [x] Kartensteuerungs-Buttons (Zoom In/Out, Kompass-Reset, Pitch-Reset, Nutzerstandort via Capacitor Geolocation)
 - [x] Info- & Urheberrechts-Modal (Attribution, Markenrechte & Notfallhinweise)
