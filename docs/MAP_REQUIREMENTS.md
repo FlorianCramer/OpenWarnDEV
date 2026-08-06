@@ -70,9 +70,9 @@ das gilt für alle unten genannten Punkte und wird der Kürze halber nicht bei j
   - *Quelle:* frei nutzbare Satelliten-/Luftbild-Kacheln, z. B. [Esri World Imagery](https://www.esri.com/en-us/arcgis/products/arcgis-image-services) (kostenlos für Web-Maps mit Attribution) – Lizenzbedingungen vor Umsetzung final prüfen.
   - *Umsetzung:* Zusätzlicher Toggle im Kartensteuerungs-Panel (siehe Steuerungs-Tabelle in [STYLEGUIDE.md](/docs/STYLEGUIDE.md)), der zwischen Vector- und Raster-Satelliten-Style wechselt.
 
-- [ ] **Fokus auf Deutschland: andere Länder ausgegraut, Navigation eingegrenzt**
-  - *Quelle:* Deutschland-Grenze als GeoJSON, z. B. über Overpass API (`relation["boundary"="administrative"]["admin_level"="2"]["ISO3166-1"="DE"]`) einmalig laden und lokal cachen statt bei jedem Start neu abzufragen.
-  - *Umsetzung:* `map.setMaxBounds()` für die Navigationsbegrenzung, plus eine invertierte Maskierungs-Fläche (Welt-Polygon minus Deutschland-Polygon) als abgedunkelter `fill`-Layer.
+- [x] **Fokus auf Deutschland: andere Länder ausgegraut, Navigation eingegrenzt**
+  - *Quelle:* Deutschland-Grenze als GeoJSON über die Overpass API (OSM-Relation `51477`, Deutschland).
+  - *Umsetzung:* `map.setMaxBounds()` für die Navigationsbegrenzung, plus eine invertierte Maskierungs-Fläche (begrenztes Karten-Polygon minus Deutschland-Polygon) als nativer MapLibre-`fill`-Layer. Die Maske wird ausschließlich aus der erfolgreich geladenen Deutschland-Relation erzeugt; ohne Grenzdaten wird keine Ersatzgeometrie gezeichnet.
 
 - [ ] **Performance-Optimierung des 3D-Geländes**
   - *Quelle:* keine neue Datenquelle – betrifft die bestehenden Mapterhorn-Terrain-Tiles.
