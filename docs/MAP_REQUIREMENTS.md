@@ -72,7 +72,7 @@ das gilt für alle unten genannten Punkte und wird der Kürze halber nicht bei j
 
 - [x] **Fokus auf Deutschland: andere Länder ausgegraut, Navigation eingegrenzt**
   - *Quelle:* Als GeoJSON exportierte Deutschland-Grenze aus der Overpass-OSM-Relation `51477`.
-  - *Umsetzung:* Die Grenze wird mit `npm run update:germany-boundary` einmalig aktualisiert und als `src/data/germany-boundary.json` versioniert. Die App lädt ausschließlich diese statische Datei und zeichnet daraus die invertierte Maskierungs-Fläche als nativen MapLibre-`fill`-Layer; im Betrieb gibt es keinen Overpass-Request.
+  - *Umsetzung:* Die Grenze wird mit `npm run update:germany-boundary` aktualisiert und als `public/germany-boundary.json` versioniert. Standardmäßig wird die Geometrie mit maximal 10 m Punktabstand erzeugt. Für andere Detailstufen: `npm run update:germany-boundary -- --space 3`, größenorientiert `npm run update:germany-boundary -- --size 10` oder mit fester Gesamtpunktzahl `npm run update:germany-boundary -- --points 10000`. Die drei Modi sind gegenseitig exklusiv. Die App lädt ausschließlich diese statische Datei und zeichnet daraus die invertierte Maskierungs-Fläche als nativen MapLibre-`fill`-Layer; im Betrieb gibt es keinen Overpass-Request.
 
 - [ ] **Performance-Optimierung des 3D-Geländes**
   - *Quelle:* keine neue Datenquelle – betrifft die bestehenden Mapterhorn-Terrain-Tiles.

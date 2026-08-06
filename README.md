@@ -52,3 +52,22 @@ Die App soll einen geschützten Einsatzmodus mit Aktivierungsschlüssel unterst�
 
 [/docs/ARCHITECTURE.md](/docs/ARCHITECTURE.md)
 [/docs/STYLEGUIDE.md](/docs/STYLEGUIDE.md)
+
+### Deutschland-Grenze aktualisieren
+
+Die statische Grenzdatei wird mit Overpass aktualisiert und anschließend von der App lokal ausgeliefert:
+
+```bash
+cd app
+npm run update:germany-boundary
+```
+
+Der Standardabstand beträgt 10 m. Für eine andere Detailstufe oder eine Zielgröße können die Optionen verwendet werden:
+
+```bash
+npm run update:germany-boundary -- --space 3
+npm run update:germany-boundary -- --size 10
+npm run update:germany-boundary -- --points 10000
+```
+
+`--space` erwartet Meter, `--size` eine ungefähre Dateigröße in MB und `--points` eine feste Gesamtanzahl an Grenzpunkten. Die Modi sind gegenseitig exklusiv. Overpass wird nur beim manuellen Aktualisieren angesprochen, nicht im laufenden Betrieb.
