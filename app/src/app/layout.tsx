@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "OpenWarnDE",
     description: "Made by a random kid before turning 20. Somehow it works.",
-    url: "https://crmflo112.w3spaces.com/",
+    url: "https://openwarnde.web.app/",
     siteName: "OpenWarnDE",
   },
 };

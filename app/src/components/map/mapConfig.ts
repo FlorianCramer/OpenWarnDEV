@@ -7,5 +7,4 @@ export const MAP_ZOOM = 5.5;
 export const MAP_MAX_PITCH = 75;
 
 // 3D-Terrain Konfiguration
-/** Standard-Höhenübertreibungsfaktor für das 3D-Gelände */
 export const TERRAIN_EXAGGERATION = 1;

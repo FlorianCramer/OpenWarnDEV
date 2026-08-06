@@ -7,6 +7,7 @@
 > Beschreibe die wichtigsten Änderungen in wenigen Sätzen.
 
 ```text
+
 ```
 
 ### Warum ist diese Änderung notwendig?
@@ -14,6 +15,7 @@
 > Erläutere den Hintergrund oder das Problem, das mit diesem PR gelöst wird.
 
 ```text
+
 ```
 
 ## Ziel
@@ -44,4 +46,5 @@
 > Optional: Screenshots, Logs oder weitere relevante Informationen.
 
 ```text
+
 ```

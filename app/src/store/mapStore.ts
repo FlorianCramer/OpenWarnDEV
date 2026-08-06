@@ -43,7 +43,7 @@ export const useMapStore = create<MapStore>((set) => ({
   buildings3D: true,
   setBuildings3D: (enabled) => set({ buildings3D: enabled }),
 
-  terrain3D: true,
+  terrain3D: false,
   setTerrain3D: (enabled) => set({ terrain3D: enabled }),
 
   controlsConfig: {

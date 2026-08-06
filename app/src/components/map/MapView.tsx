@@ -22,7 +22,7 @@ interface MapViewProps {
   enabled?: boolean;
 }
 
-// Hillshade-Konfiguration (genau wie im Beispiel)
+// Hillshade-Konfiguration
 const HILLSHADE_SOURCE_ID = "hillshadeSource";
 const HILLSHADE_LAYER_ID = "hills";
 const HILLSHADE_TILEJSON_URL = "https://tiles.mapterhorn.com/tilejson.json";
@@ -46,10 +46,10 @@ function initHillshade(map: MapLibreMap) {
         type: "hillshade",
         source: HILLSHADE_SOURCE_ID,
         paint: {
-          "hillshade-shadow-color": "#473B24", // warmer Schatten wie im Beispiel
+          "hillshade-shadow-color": "#473B24",
         },
       },
-      firstSymbolId // optional: hinter die Labels setzen, sodass diese lesbar bleiben
+      firstSymbolId
     );
   }
 }
@@ -116,7 +116,7 @@ export default function MapView({ enabled = true }: MapViewProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled]);
 
-  // ─── Reaktiver Terrain-Toggle (inkl. Hillshade) ──────────────────────────
+  // ─── Reaktiver Terrain-Toggle 
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !map.isStyleLoaded()) return;
@@ -125,7 +125,7 @@ export default function MapView({ enabled = true }: MapViewProps) {
     setHillshadeVisible(map, terrain3D);
   }, [terrain3D]);
 
-  // ─── Reaktiver Gebäude-Toggle ─────────────────────────────────────────────
+  // ─── Reaktiver Gebäude-Toggle 
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !map.isStyleLoaded()) return;
