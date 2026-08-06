@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "update:germany-boundary": "node scripts/update-germany-boundary.mjs",
     "start": "next start",
     "mobile:sync": "npx cap sync",
     "mobile:android": "npx cap add android",

@@ -6,4 +6,14 @@
 - [ ] Gebäude verändern ihre höhen wenn das 3D Gelände an ist und sind somit nicht mehr realistisch
 - [ ] Satelit troggle in den Mapeinstellungen
 - [ ] Teile der gesehenen karte für bessere Performance in dem Appspeicher speichern (vorversion zur offline karte)
-- [ ] 
+
+# Erweiterungen
+- [ ] Maplayer Button
+  - [ ] Maplayer Modal
+  
+  ![Maplayer modal](images/image.png)
+
+- [ ] Search Button on the map
+  
+![searchbar](images/searchbar.png)
+![Bosbar](images/bosbar.png)
