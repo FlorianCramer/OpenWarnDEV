@@ -108,3 +108,19 @@ Das System soll einfach erweiterbar bleiben. Neue Datenquellen, Warnmodelle, Kar
 ## Betriebsmodus
 
 Die App enthält einen Einsatzmodus, der über einen Schlüssel aktiviert werden kann. Dieser Modus bietet spezielle Ansichten für Feuerwehr, Katastrophenschutz und andere Einsatzorganisationen bei gleichbleibender Basisarchitektur.
+
+## Deployment & Öffentliche Bereitstellung
+
+### Web-Verfügbarkeit
+
+Die Webanwendung ist aktuell in der Testphase **öffentlich zugänglich** unter:
+
+**https://openwarnde.web.app/**
+
+Dieser Dienst wird über **Firebase Hosting** bereitgestellt. Die Next.js-App wird als statisches Export gebaut (`next build` → Verzeichnis `out/`), womit sie serverlos auf Firebase Hosting gehostet werden kann. Die Firebase-Konfiguration befindet sich in [`app/firebase.json`](/app/firebase.json); das Zielprojekt ist `openwarnde` (siehe [`app/.firebaserc`](/app/.firebaserc)).
+
+### Zukünftige Deployment-Pläne
+
+- **Mobile Apps**: Über Capacitor.js als native Android- und iOS-Apps, später im App Store und Google Play Store.
+- **Server**: Der Python-basierte Server für Datenfusion und Warnungsverteilung wird später zentral gehostet und über Port 3000 eine Web-Administrationsoberfläche bereitstellen.
+- **Skalierung**: Firebase App Hosting als optionales Upgrade für dynamische (SSR) Routen in Betracht ziehen, sobald serverseitige API-Endpoints implementiert sind.
