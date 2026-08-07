@@ -411,7 +411,7 @@ export default function MenuPopup({ isOpen, onClose }: MenuPopupProps) {
             {path.length > 1 ? (
               <button
                 onClick={goBack}
-                className="flex items-center gap-2 text-gray-600 dark:text-gray-400 active:text-gray-900 dark:active:text-white transition-colors min-h-[44px] min-w-[44px] cursor-pointer"
+                className="flex items-center gap-2 text-gray-600 dark:text-gray-400 active:text-gray-900 dark:active:text-white transition-colors min-h-11 min-w-11 cursor-pointer"
                 aria-label="Zurück"
               >
                 <Icons.AngleLeft className="w-5 h-5" />
@@ -428,7 +428,7 @@ export default function MenuPopup({ isOpen, onClose }: MenuPopupProps) {
             <button
               onClick={onClose}
               aria-label="Schließen"
-              className="p-2 rounded-lg text-gray-400 active:text-gray-700 dark:active:text-gray-200 active:bg-gray-100 dark:active:bg-gray-800 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
+              className="p-2 rounded-lg text-gray-400 active:text-gray-700 dark:active:text-gray-200 active:bg-gray-100 dark:active:bg-gray-800 transition-all min-h-11 min-w-11 flex items-center justify-center cursor-pointer"
             >
               <Icons.Xmark className="w-5 h-5" />
             </button>
@@ -572,7 +572,7 @@ function MenuNavItem({ icon, label, description, onClick }: MenuNavItemProps) {
   return (
     <button
       onClick={handleClick}
-      className="w-full flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-lg text-left
+      className="w-full flex items-center gap-3 px-3 py-3 min-h-12 rounded-lg text-left
                  hover:bg-gray-50 dark:hover:bg-gray-800/50
                  active:bg-gray-100 dark:active:bg-gray-800
                  transition-colors group cursor-pointer touch-manipulation"
@@ -615,7 +615,7 @@ function ToggleRow({ label, description, icon, enabled, onToggle }: ToggleRowPro
   };
 
   return (
-    <div className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-lg
+    <div className="flex items-center gap-3 px-3 py-3 min-h-12 rounded-lg
                     bg-gray-50 dark:bg-gray-800/60
                     border border-gray-200 dark:border-gray-700
                     hover:bg-gray-100 dark:hover:bg-gray-800
@@ -719,7 +719,7 @@ function InputRow({ label, description, icon, value, onChange, placeholder }: In
                       text-gray-900 dark:text-white
                       placeholder-gray-400
                       focus:outline-none focus:ring-2 focus:ring-blue-700
-                      transition-all min-h-[44px] cursor-text
+                      transition-all min-h-11 cursor-text
                       ${
                         hasError
                           ? "border-rose-400 dark:border-rose-500"
