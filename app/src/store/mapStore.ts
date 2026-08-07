@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export interface MapControlsConfig {
   enabled: boolean;
@@ -25,6 +26,9 @@ type MapStore = {
   terrain3D: boolean;
   setTerrain3D: (enabled: boolean) => void;
 
+  bosMode: boolean;
+  setBosMode: (enabled: boolean) => void;
+
   controlsConfig: MapControlsConfig;
   setControlsConfig: (config: Partial<MapControlsConfig>) => void;
 
@@ -39,12 +43,17 @@ type MapStore = {
   setUserLocation: (location: Partial<UserLocationState>) => void;
 };
 
-export const useMapStore = create<MapStore>((set) => ({
+export const useMapStore = create<MapStore>()(
+  persist(
+    (set) => ({
   buildings3D: true,
   setBuildings3D: (enabled) => set({ buildings3D: enabled }),
 
   terrain3D: false,
   setTerrain3D: (enabled) => set({ terrain3D: enabled }),
+
+  bosMode: false,
+  setBosMode: (enabled) => set({ bosMode: enabled }),
 
   controlsConfig: {
     enabled: true,
@@ -78,4 +87,12 @@ export const useMapStore = create<MapStore>((set) => ({
     set((state) => ({
       userLocation: { ...state.userLocation, ...location },
     })),
-}));
+    }),
+    {
+      name: "openwarnde-app-state",
+      storage: createJSONStorage(() => localStorage),
+      // Nur der BOS-Modus gehört zu den dauerhaft gespeicherten Einstellungen.
+      partialize: (state) => ({ bosMode: state.bosMode }),
+    },
+  ),
+);
