@@ -1,4 +1,4 @@
-# Pull Request – Merge `dev` → `main`
+# Pull Request - Merge `dev` → `main`
 
 ## Zusammenfassung
 

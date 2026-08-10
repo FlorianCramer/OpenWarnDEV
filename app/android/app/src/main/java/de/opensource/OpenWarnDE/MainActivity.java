@@ -1,4 +1,4 @@
-package de.opensource.OpenWarnDE;
+package de.exed.openwarnde;
 
 import com.getcapacitor.BridgeActivity;
 

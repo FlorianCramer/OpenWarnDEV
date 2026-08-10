@@ -1,0 +1,183 @@
+name: Firebase App Distribution (Dev)
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'app/**'
+
+jobs:
+  distribute:
+    name: Build & Distribute Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      # ─────────────────────────────────────────────
+      # Checkout
+      # ─────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ─────────────────────────────────────────────
+      # Node.js
+      # ─────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      # ─────────────────────────────────────────────
+      # Java
+      # ─────────────────────────────────────────────
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      # ─────────────────────────────────────────────
+      # Dependencies
+      # ─────────────────────────────────────────────
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      # ─────────────────────────────────────────────
+      # Version
+      # ─────────────────────────────────────────────
+      - name: Read version
+        working-directory: app
+        shell: bash
+        run: |
+          APP_VERSION=$(node -p "require('./package.json').version")
+          APP_CODE="${{ github.run_number }}"
+
+          echo "APP_VERSION=$APP_VERSION" >> "$GITHUB_ENV"
+          echo "APP_CODE=$APP_CODE" >> "$GITHUB_ENV"
+
+          echo "Version: $APP_VERSION"
+          echo "Code: $APP_CODE"
+
+      # ─────────────────────────────────────────────
+      # Android version
+      # ─────────────────────────────────────────────
+      - name: Update Android version
+        working-directory: app
+        shell: bash
+        run: |
+          sed -i "s/versionCode [0-9]*/versionCode ${APP_CODE}/" android/app/build.gradle
+          sed -i "s/versionName \".*\"/versionName \"${APP_VERSION}\"/" android/app/build.gradle
+
+          echo "Android version:"
+          grep -E "versionCode|versionName" android/app/build.gradle
+
+      # ─────────────────────────────────────────────
+      # Build Web App
+      # ─────────────────────────────────────────────
+      - name: Build Web App
+        working-directory: app
+        run: npm run build
+
+      # ─────────────────────────────────────────────
+      # Capacitor
+      # ─────────────────────────────────────────────
+      - name: Capacitor Sync Android
+        working-directory: app
+        run: npx cap sync android
+
+      # ─────────────────────────────────────────────
+      # Debug Keystore
+      # ─────────────────────────────────────────────
+      - name: Setup Android Debug Keystore
+        shell: bash
+        run: |
+          mkdir -p "$HOME/.android"
+
+          if [ ! -f "$HOME/.android/debug.keystore" ]; then
+            keytool \
+              -genkeypair \
+              -v \
+              -keystore "$HOME/.android/debug.keystore" \
+              -storepass android \
+              -alias androiddebugkey \
+              -keypass android \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -dname "CN=Android Debug,O=Android,C=US"
+          fi
+
+          echo "DEBUG_KEYSTORE=$HOME/.android/debug.keystore" >> "$GITHUB_ENV"
+
+          ls -lh "$HOME/.android/debug.keystore"
+
+      # ─────────────────────────────────────────────
+      # Gradle
+      # ─────────────────────────────────────────────
+      - name: Make Gradle executable
+        working-directory: app/android
+        run: chmod +x gradlew
+
+      # ─────────────────────────────────────────────
+      # Build APK
+      # ─────────────────────────────────────────────
+      - name: Build Development APK
+        working-directory: app/android
+        run: |
+          ./gradlew assembleDebug --stacktrace
+
+      # ─────────────────────────────────────────────
+      # Verify APK
+      # ─────────────────────────────────────────────
+      - name: Verify APK
+        working-directory: app/android
+        run: |
+          APK_PATH="build/outputs/apk/debug/app-debug.apk"
+
+          if [ ! -f "$APK_PATH" ]; then
+            echo "ERROR: APK not found at $APK_PATH"
+            exit 1
+          fi
+
+          echo "APK successfully built:"
+          ls -lh "$APK_PATH"
+
+      # ─────────────────────────────────────────────
+      # Commit message
+      # ─────────────────────────────────────────────
+      - name: Get latest commit message
+        id: commit_msg
+        shell: bash
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+
+          {
+            echo "commit_msg<<EOF"
+            echo "$COMMIT_MSG"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      # ─────────────────────────────────────────────
+      # Firebase CLI
+      # ─────────────────────────────────────────────
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      # ─────────────────────────────────────────────
+      # Firebase App Distribution
+      # ─────────────────────────────────────────────
+      - name: Upload to Firebase App Distribution
+        working-directory: app/android
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
+        run: |
+          firebase appdist:upload \
+            build/outputs/apk/debug/app-debug.apk \
+            --app "$FIREBASE_APP_ID" \
+            --release-notes "${{ steps.commit_msg.outputs.commit_msg }}" \
+            --groups "testers"

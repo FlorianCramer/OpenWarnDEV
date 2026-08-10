@@ -17,6 +17,7 @@ Bei Änderungen an diesem Repository gilt:
 - bei Umsetzung einer Anforderung aus [MAP_REQUIREMENTS.md](MAP_REQUIREMENTS.md) die zugehörige Checkbox abhaken
 - [README.md](/README.md) immer aktuell halten
 - Performance prüfen
+- [CopyrightModal](/app/src/components/map/CopyrightModal.tsx) bei Änderungen an der Karte oder deren Quellen Aktualisieren. Alle Urheberrechtlichen infos mit einbauen.  
 
 ## NIEMALS
 
