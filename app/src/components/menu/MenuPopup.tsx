@@ -85,7 +85,7 @@ async function triggerHapticLight() {
     const { Haptics, ImpactStyle } = await import("@capacitor/haptics");
     await Haptics.impact({ style: ImpactStyle.Light });
   } catch {
-    // Kein natives Haptik verfügbar – silent fallback
+    // Kein natives Haptik verfügbar - silent fallback
   }
 }
 

@@ -1,4 +1,4 @@
-# OpenWarnDEV – Server-Idee vollständig mit Firebase umsetzen
+# OpenWarnDEV - Server-Idee vollständig mit Firebase umsetzen
 
 Bezug: `docs/ARCHITECTURE.md` (Server-Aufgaben) und `docs/SERVER_REQUIREMENTS.md`.
 Ziel dieser ersten Ausbaustufe: Admin-UI unter eigener Subdomain, Login (kein Self-Signup),
@@ -19,7 +19,7 @@ pro Kachel berechnen und als ersten Map-Layer bereitstellen.
 | API-Keys geheim halten                              | **Secret Manager** (über Firebase Functions Params) |
 | Zugriff für den Map-Layer im Client                 | Firestore **öffentlich lesbar**, Client hört per `onSnapshot` |
 
-Der Server wird laut deiner `ARCHITECTURE.md` mit **Python** entwickelt – das bleibt so:
+Der Server wird laut deiner `ARCHITECTURE.md` mit **Python** entwickelt - das bleibt so:
 Firebase Cloud Functions (2nd Gen) unterstützen Python 3.12 als offiziellen Runtime, daher
 schreiben wir die Funktionen in Python statt in Node.js.
 
@@ -31,7 +31,7 @@ schreiben wir die Funktionen in Python statt in Node.js.
   Du bekommst für die Admin-UI eine zweite kostenlose Subdomain wie `openwarnde-admin.web.app`.
 - **Cloud Functions (2nd Gen)**: brauchen zwingend den **Blaze-Plan** (Kreditkarte hinterlegt,
   Pay-as-you-go). Das kostenlose Kontingent (u. a. 2 Mio. Aufrufe/Monat, 360.000 GB-Sekunden)
-  bleibt aber erhalten – du zahlst nur, wenn du darüber kommst. Für ein Projekt wie deins (ein
+  bleibt aber erhalten - du zahlst nur, wenn du darüber kommst. Für ein Projekt wie deins (ein
   Scheduled-Fetch alle 15 Minuten + ein paar Admin-Aufrufe) wirst du realistisch bei 0 € bleiben,
   mgu musst aber die Karte hinterlegen.
 - **Firestore**: ebenfalls im Spark-Free-Tier ausreichend für den Anfang (50k Reads/20k Writes pro Tag).
@@ -116,7 +116,7 @@ weatherTiles/{tileId}          // tileId z.B. "z8_x137_y84"
   tileX, tileY, zoom: number
   dwdRisk: number | null
   owmRisk: number | null
-  combinedProbability: number  // 0.0 – 1.0, deine Wahrscheinlichkeitsrechnung
+  combinedProbability: number  // 0.0 - 1.0, deine Wahrscheinlichkeitsrechnung
   updatedAt: timestamp
 
 users/{uid}
@@ -150,7 +150,7 @@ user = auth.get_user_by_email("deine@mail.de")
 auth.set_custom_user_claims(user.uid, {"admin": True})
 ```
 
-**`functions/main.py` – Callable Function für alle weiteren Nutzer:**
+**`functions/main.py` - Callable Function für alle weiteren Nutzer:**
 
 ```python
 from firebase_functions import https_fn, scheduler_fn
@@ -185,7 +185,7 @@ def create_user(req: https_fn.CallableRequest) -> dict:
 ```
 
 Warum `on_call` statt eines normalen HTTP-Endpunkts: Callable Functions prüfen das
-Firebase-Auth-Token automatisch und stellen es dir als `req.auth` bereit – du musst nichts
+Firebase-Auth-Token automatisch und stellen es dir als `req.auth` bereit - du musst nichts
 selbst verifizieren.
 
 ---
@@ -246,7 +246,7 @@ def _write_tile_result(source: str, results: list[dict]) -> None:
             tile_ref.update({"combinedProbability": combined})
 ```
 
-`_parse_cap` und `_parse_openweather` sind Platzhalter – die genaue Kachel-Zuordnung (welche
+`_parse_cap` und `_parse_openweather` sind Platzhalter - die genaue Kachel-Zuordnung (welche
 lat/lon gehört zu welcher `tile_id`) hängt von deinem Zoom-/Kachelschema in MapLibre ab; das
 würde ich als eigenen Schritt angehen, sobald der Rest läuft.
 
@@ -279,12 +279,12 @@ service cloud.firestore {
 }
 ```
 
-Wichtig: Die Cloud Function nutzt das Admin SDK, das die Security Rules komplett umgeht – nur
+Wichtig: Die Cloud Function nutzt das Admin SDK, das die Security Rules komplett umgeht - nur
 Zugriffe vom Client (Browser) werden durch diese Regeln geprüft.
 
 ---
 
-## 9. Admin-UI (`admin/` – Next.js, gleicher Stack wie `app/`)
+## 9. Admin-UI (`admin/` - Next.js, gleicher Stack wie `app/`)
 
 **Login-Seite** (kein Registrierungslink!):
 
@@ -363,5 +363,5 @@ Als MapLibre-Layer eignet sich ein `fill`- oder `heatmap`-Layer, eingefärbt nac
 7. Client: `weatherTiles`-Layer in MapLibre einbinden
 
 Damit hast du nach Schritt 5 bereits die komplette Admin-Seite mit Login, Nutzerverwaltung und
-Datenquellen – die eigentliche Wetterdaten-Logik (Schritt 6–7) baust du danach in Ruhe aus, ohne
+Datenquellen - die eigentliche Wetterdaten-Logik (Schritt 6-7) baust du danach in Ruhe aus, ohne
 dass Auth/Hosting/Rules nochmal angefasst werden müssen.
