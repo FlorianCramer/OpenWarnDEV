@@ -419,7 +419,7 @@ export default function MenuPopup({ isOpen, onClose }: MenuPopupProps) {
               </button>
             ) : (
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-md bg-blue-700 flex items-center justify-center overflow-hidden">
+                <div className="w-8 h-8 rounded-md  flex items-center justify-center overflow-hidden">
                   <img src={icon.src as string} alt="Logo" className="w-full h-full object-contain" />
                 </div>
                 <span className="text-sm font-bold text-gray-900 dark:text-white">OpenWarnDE</span>
@@ -497,7 +497,7 @@ export default function MenuPopup({ isOpen, onClose }: MenuPopupProps) {
             </button>
           ) : (
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-md bg-blue-700 flex items-center justify-center overflow-hidden">
+              <div className="w-8 h-8 rounded-md flex items-center justify-center overflow-hidden">
                 <img src={icon.src as string} alt="Logo" className="w-full h-full object-contain" />
               </div>
               <span className="text-sm font-bold text-gray-900 dark:text-white">OpenWarnDE</span>
