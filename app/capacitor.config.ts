@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'de.opensource.openwarnde',
+  appId: 'de.exed.openwarnde',
   appName: 'OpenWarnDE',
   webDir: 'out',
 

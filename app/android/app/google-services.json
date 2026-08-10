@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "537278844158",
+    "project_id": "openwarnde",
+    "storage_bucket": "openwarnde.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537278844158:android:00259c33a20d612263e9af",
+        "android_client_info": {
+          "package_name": "de.exed.openwarnde"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTuGoCFW2EVI3faVW4BM60xeBkOe9hLVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
